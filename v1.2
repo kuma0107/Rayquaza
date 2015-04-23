@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<map proto="1.3.3">
+  <name>Rayquaza</name>
+  <version>1.2</version>
+  <objective>Grab the objective wool from wool room and place it to pedestal in the base.</objective>
+  <authors>
+    <author>kuma__</author>
+  </authors>
+  <teams>
+    <team color="blue" max="32">Blue Team</team>
+    <team color="dark_red" max="32">Red Team</team>
+  </teams>
+  <kits>
+    <kit name="spawn">
+      <item slot="0" bind="true">stone sword</item>
+      <item slot="1" bind="true">bow</item>
+      <item slot="2" bind="true">iron pickaxe</item>
+      <item slot="3" bind="true">iron axe</item>
+      <item slot="4" bind="true">iron spade</item>
+      <item slot="5" amount="2">golden_apple</item>
+      <item slot="6" amount="64" bind="true">cooked fish</item>
+      <item slot="7" amount="64">glass</item>
+      <item slot="8" amount="48" damage="2">log</item>
+      <item slot="27">stick</item>
+      <item slot="18" amount="3">iron ingot</item>
+      <item slot="19" amount="64" bind="true">arrow</item>
+      <item slot="28" amount="64" bind="true">arrow</item>
+    </kit>
+    <kit name="blue" parents="spawn">
+      <helmet color="6699D8" damage="-3000" enchantment="PROTECTION_PROJECTILE:1" bind="true">leather helmet</helmet>
+    </kit>
+    <kit name="red" parents="spawn">
+      <helmet color="F27FA5" damage="-3000" enchantment="PROTECTION_PROJECTILE:1" bind="true">leather helmet</helmet>
+    </kit>
+  </kits>
+  <spawns>
+    <spawn team="blue" yaw="180" kit="blue">
+      <cuboid min="805,31,868" max="809,31,872" />
+    </spawn>
+    <spawn team="red" yaw="0" kit="red">
+      <cuboid min="805,31,533" max="809,31,529" />
+    </spawn>
+    <default yaw="-90">
+      <cuboid min="705,81,704" max="708,81,697" />
+    </default>
+  </spawns>
+  <filters>
+    <filter name="only-blue" parents="deny-all">
+      <allow>
+        <team>blue</team>
+      </allow>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+      <allow>
+        <team>red</team>
+      </allow>
+    </filter>
+    <filter name="only-goldblock" parents="deny-blocks">
+      <allow>
+        <block>gold block</block>
+      </allow>
+    </filter>
+    <filter name="no-void">
+      <not>
+        <void />
+      </not>
+    </filter>
+  </filters>
+  <killreward>
+    <item amount="1">golden apple</item>
+  </killreward>
+  <itemremove>
+    <item>diamond chestplate</item>
+    <item>iron sword</item>
+    <item>leather helmet</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>iron boots</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>wool</item>
+    <item>potion</item>
+    <item>log</item>
+    <item>iron ingot</item>
+    <item>stick</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>gold block</item>
+    <item>gold ingot</item>
+  </itemremove>
+  <wools>
+    <wool team="blue" color="green">
+      <block location="806,14,783" />
+    </wool>
+    <wool team="blue" color="lime">
+      <block location="808,14,783" />
+    </wool>
+    <wool team="dark_red" color="orange">
+      <block location="806,14,618" />
+    </wool>
+    <wool team="dark_red" color="purple">
+      <block location="808,14,618" />
+    </wool>
+  </wools>
+  <regions>
+    <complement name="purple">
+      <rectangle min="848,817" max="862,832" />
+      <cuboid name="chestp" min="857,20,822" max="852,20,827"/>
+    </complement>
+    <complement name="orange">
+      <rectangle min="766,817" max="752,832" />
+      <cuboid name="chesto" min="757,20,822" max="762,20,827"/>
+    </complement>
+    <union name="woolroom-blue">
+      <region name="purple"/>
+      <region name="orange"/>
+    </union>
+    <complement name="lime">
+      <rectangle min="848,584" max="862,569" />
+      <cuboid name="chestl" min="857,20,579" max="852,20,574"/>
+    </complement>
+    <complement name="green">
+      <rectangle min="766,584" max="752,569" />
+      <cuboid name="chestg" min="757,20,579" max="762,20,574"/>
+    </complement>
+    <union name="woolroom-red">
+      <region name="lime"/>
+      <region name="green"/>
+    </union>
+    <union name="chests">
+      <region name="chestp"/>
+      <region name="chesto"/>
+      <region name="chestl"/>
+      <region name="chestg"/>
+    </union>
+    <union name="blue-base-all">
+      <rectangle min="789,782" max="825,796" />
+      <rectangle min="805,798" max="809,780" />
+      <rectangle min="803,841" max="811,874" />
+    </union>
+    <union name="red-base-all">
+      <rectangle min="789,619" max="825,605" />
+      <rectangle min="809,603" max="805,621" />
+      <rectangle min="803,560" max="811,527" />
+    </union>
+    <complement name="blue-base">
+      <region name="blue-base-all" />
+      <block>806,14,618</block>
+      <block>808,14,618</block>
+    </complement>
+    <complement name="red-base">
+      <region name="red-base-all" />
+      <block>806,14,783</block>
+      <block>808,14,783</block>
+    </complement>
+    <union name="bases">
+      <region name="blue-base" />
+      <region name="red-base" />
+    </union>
+    <union name="out">
+      <cuboid min="783,1,667" max="831,0,658" />
+      <cuboid min="756,4,657" max="877,0,583" />
+      <cuboid min="831,9,582" max="783,0,570" />
+      <cuboid min="753,12,570" max="782,0,583" />
+      <cuboid min="832,12,583" max="861,0,570" />
+      <cuboid min="831,1,734" max="783,0,743" />
+      <cuboid min="877,0,744" max="756,4,818" />
+      <cuboid min="831,9,819" max="783,0,831" />
+      <cuboid min="753,12,831" max="782,0,818" />
+      <cuboid min="832,12,818" max="861,0,831" />
+      <rectangle min="817,570" max="797,583" />
+      <rectangle min="817,831" max="797,818" />
+    </union>
+    <apply enter="only-blue" message="You cannot enter your team's wool room!">
+      <region name="woolroom-red" />
+    </apply>
+    <apply enter="only-red" message="You cannot enter your team's wool room!">
+      <region name="woolroom-blue" />
+    </apply>
+    <apply block="only-blue" message="You cannot modify your team's wool room!">
+      <region name="woolroom-red" />
+    </apply>
+    <apply block="only-red" message="You cannot modify your team's wool room!">
+      <region name="woolroom-blue" />
+    </apply>
+    <apply block-break="deny-all" message="You cannot break this chest!">
+      <region name="chests"/>
+    </apply>
+    <apply block-place="deny-all" message="You cannot modify the base!">
+    <region name="bases"/>
+    </apply>
+    <apply block-break="only-goldblock" message="You cannot modify the base!">
+      <region name="bases"/>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter enemy team's base!">
+      <region name="blue-base" />
+    </apply>
+    <apply enter="only-red" message="You cannot enter enemy team's base!">
+      <region name="red-base" />
+    </apply>
+    <apply block="deny-all" message="You cannot modify the void area!">
+    <region name="out"/>
+    </apply>
+    <apply block="no-void" message="You cannot modify the void area!">
+      <negative>
+        <rectangle min="842,795" max="772,782" />
+        <rectangle min="842,605" max="772,618" />
+        <rectangle min="783,689" max="831,712" />
+      </negative>
+    </apply>
+  </regions>
+  <maxbuildheight>36</maxbuildheight>
+  <blockdrops>
+    <rule>
+      <region>
+        <cuboid min="855,24,576" max="854,24,577" />
+      </region>
+      <filter>
+        <block>wool</block>
+      </filter>
+      <drops>
+        <item damage="5">wool</item>
+      </drops>
+      <replacement>air</replacement>
+      <wrongtool>true</wrongtool>
+      <restore-time>5</restore-time>
+    </rule>
+    <rule>
+      <region>
+        <cuboid min="759,24,576" max="760,24,577" />
+      </region>
+      <filter>
+        <block>wool</block>
+      </filter>
+      <drops>
+        <item damage="13">wool</item>
+      </drops>
+      <replacement>air</replacement>
+      <wrongtool>true</wrongtool>
+      <restore-time>5</restore-time>
+    </rule>
+    <rule>
+      <region>
+        <cuboid min="855,24,825" max="854,24,824" />
+      </region>
+      <filter>
+        <block>wool</block>
+      </filter>
+      <drops>
+        <item damage="10">wool</item>
+      </drops>
+      <replacement>air</replacement>
+      <wrongtool>true</wrongtool>
+      <restore-time>5</restore-time>
+    </rule>
+    <rule>
+      <region>
+        <cuboid min="759,24,825" max="760,24,824" />
+      </region>
+      <filter>
+        <block>wool</block>
+      </filter>
+      <drops>
+        <item damage="1">wool</item>
+      </drops>
+      <replacement>air</replacement>
+      <wrongtool>true</wrongtool>
+      <restore-time>5</restore-time>
+    </rule>
+    <rule>
+      <region>
+        <region name="bases"/>
+      </region>
+      <filter>
+        <block>gold block</block>
+      </filter>
+      <drops>
+        <item>gold block</item>
+      </drops>
+      <replacement>air</replacement>
+      <restore-time>10</restore-time>
+    </rule>
+  </blockdrops>
+  <disabledamage>
+    <damage>SUFFOCATION</damage>
+  </disabledamage>
+  <portals>
+    <portal x="@807" y="@47" z="@789" yaw="180" pitch="90" filter="allow-all">
+      <cuboid min="806,35,842" max="808,29,842" />
+    </portal>
+    <portal x="@807" y="@31" z="@844" yaw="0" pitch="0" filter="allow-all">
+      <cuboid min="806,17,795" max="808,11,795" />
+    </portal>
+    <portal x="@807" y="@47" z="@612" yaw="0" pitch="90" filter="allow-all">
+      <cuboid min="806,35,559" max="808,29,559" />
+    </portal>
+    <portal x="@807" y="@31" z="@557" yaw="180" pitch="0" filter="allow-all">
+      <cuboid min="806,17,606" max="808,11,606" />
+    </portal>
+  </portals>
+  <locales>
+    <locale lang="ja_JP">
+      <string name="Grab the objective wool from wool room and place it to pedestal in the base." value="敵陣の羊毛部屋から目標の羊毛を奪い、自チーム本拠地にある台座に設置せよ" />
+      <string name="You cannot enter your team's wool room!" value="自チームの羊毛部屋に入ることはできません！" />
+      <string name="You cannot modify your team's wool room!" value="自チームの羊毛部屋を編集することはできません！" />
+      <string name="You cannot modify the base!" value="本拠地を編集することはできません！" />
+      <string name="You cannot enter enemy team's base!" value="敵チームの本拠地に入ることはできません！" />
+      <string name="You cannot modify the void area!" value="ここは範囲外なので編集することはできません！" />
+      <string name="You cannot break this chest!" value="このチェストを破壊することはできません！"/>
+    </locale>
+  </locales>
+  <include src="tutorial.xml" />
+  <tutorial>
+    <stage title="Capture the Wool (CTW)">
+      <teleport>
+        <point yaw="-90" pitch="90">806,100,700</point>
+      </teleport>
+      <message>
+        <line>This map is `a`lCapture the Wool `r(CTW) map.</line>
+        <line>The objective is grabbing the wool from wool room and placing it to the pedestal in your team's base.</line>
+      </message>
+      <message lang="ja_JP">
+        <line>このマップは`a`lCapture the Wool `r(CTW)マップです。</line>
+        <line>敵チームの羊毛部屋から羊毛を奪取して拠点に持ち帰る事が目標になります。</line>
+      </message>
+    </stage>
+    <stage title="Green Wool Room on Red Team's Area">
+      <teleport>
+        <point yaw="50" pitch="20">772,28,566</point>
+      </teleport>
+      <message>
+        <line>This is one of wool room on red team's area.</line>
+        <line>Blue team will try entering here to grab the wool.</line>
+        <line>Red team should defend this room.</line>
+      </message>
+      <message lang="ja_JP">
+        <line>これは羊毛部屋のひとつで、赤チームの陣地にあります。</line>
+        <line>青チームが羊毛を奪おうと侵入してくるのを赤チームは防衛する必要があります。</line>
+      </message>
+    </stage>
+    <stage title="Spawn Point">
+      <teleport>
+        <point yaw="-7" pitch="15">806,31,529</point>
+      </teleport>
+      <message>
+        <line>Here is spawn point.</line>
+        <line>You can make golden armor by using gold block.</line>
+        <line>When you want to go to the base, enter the water portal.</line>
+      </message>
+      <message lang="ja_JP">
+        <line>ここはスポーン場所です。</line>
+        <line>金ブロックを利用して金装備を作ることができます。</line>
+        <line>奥にある水のポータルに入ると本拠地の方へ行くことができます。</line>
+      </message>
+    </stage>
+    <stage title="Red Team's Base">
+      <teleport>
+        <point yaw="-112" pitch="45">804,16,615</point>
+      </teleport>
+      <message>
+        <line>Here is red team's base.</line>
+        <line>You can return the spawnpoint by entering the water portal.</line>
+        <line>When you return here with the objective wool, place it to the pedestal out of bedrock.</line>
+      </message>
+      <message lang="ja_JP">
+        <line>ここは赤チームの本拠地です。</line>
+        <line>水のポータルに入ることでスポーン地点へ戻ることもできます。</line>
+        <line>羊毛を設置する台座は本拠地の中にあります。</line>
+      </message>
+    </stage>
+  </tutorial>
+  </map>
